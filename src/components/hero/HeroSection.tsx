@@ -130,28 +130,7 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Stats inline */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="flex items-center justify-center gap-6 sm:gap-10 mt-16 sm:mt-20 text-center"
-        >
-          {[
-            { val: "98%", label: "Match Accuracy" },
-            { val: "500K+", label: "Resumes Analyzed" },
-            { val: "12K+", label: "Companies Tracked" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-xl font-display font-bold gradient-text-blue">
-                {s.val}
-              </div>
-              <div className="text-xs text-[#555] tracking-widest uppercase mt-1">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+
       </div>
 
       {/* Scroll hint */}
