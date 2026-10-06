@@ -3,6 +3,43 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
+// VIBGYOR colors
+const VIBGYOR = [
+  new THREE.Color(0x8B00FF), // Violet
+  new THREE.Color(0x4B0082), // Indigo
+  new THREE.Color(0x0000FF), // Blue
+  new THREE.Color(0x00C800), // Green
+  new THREE.Color(0xFFFF00), // Yellow
+  new THREE.Color(0xFF7F00), // Orange
+  new THREE.Color(0xFF0000), // Red
+];
+
+function lerpVibgyor(t: number): THREE.Color {
+  const scaled = t * (VIBGYOR.length - 1);
+  const lo = Math.floor(scaled);
+  const hi = Math.min(lo + 1, VIBGYOR.length - 1);
+  return VIBGYOR[lo].clone().lerp(VIBGYOR[hi], scaled - lo);
+}
+
+function buildRainbowGeometry(
+  radius: number,
+  tube: number,
+  tubularSegments: number,
+  radialSegments: number
+): THREE.TorusKnotGeometry {
+  const geo = new THREE.TorusKnotGeometry(radius, tube, tubularSegments, radialSegments);
+  const colorArray: number[] = [];
+  for (let i = 0; i <= tubularSegments; i++) {
+    const t = i / tubularSegments;
+    const c = lerpVibgyor(t);
+    for (let j = 0; j <= radialSegments; j++) {
+      colorArray.push(c.r, c.g, c.b);
+    }
+  }
+  geo.setAttribute("color", new THREE.BufferAttribute(new Float32Array(colorArray), 3));
+  return geo;
+}
+
 export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -13,7 +50,6 @@ export default function ThreeCanvas() {
     const w = mount.clientWidth;
     const h = mount.clientHeight;
 
-    // Scene
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
     camera.position.z = 3.5;
@@ -24,41 +60,49 @@ export default function ThreeCanvas() {
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    // Wireframe torus knot
-    const geometry = new THREE.TorusKnotGeometry(1, 0.32, 180, 16);
+    // VIBGYOR outer wireframe torus knot
+    const geometry = buildRainbowGeometry(1, 0.32, 180, 16);
     const material = new THREE.MeshBasicMaterial({
-      color: 0xf4f5f7,
+      vertexColors: true,
       wireframe: true,
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.85,
     });
     const torusKnot = new THREE.Mesh(geometry, material);
     scene.add(torusKnot);
 
-    // Inner solid torus knot (glow)
-    const innerGeo = new THREE.TorusKnotGeometry(0.98, 0.3, 100, 12);
+    // VIBGYOR inner torus knot (smaller, semi-transparent)
+    const innerGeo = buildRainbowGeometry(0.78, 0.22, 120, 10);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x888888,
+      vertexColors: true,
       wireframe: true,
       transparent: true,
-      opacity: 0.06,
+      opacity: 0.35,
     });
     const inner = new THREE.Mesh(innerGeo, innerMat);
     scene.add(inner);
 
-    // Particle field
+    // Rainbow particle field
     const particleGeo = new THREE.BufferGeometry();
     const count = 800;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 12;
+    const pos = new Float32Array(count * 3);
+    const pCol = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      pos[i * 3]     = (Math.random() - 0.5) * 12;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 12;
+      const c = lerpVibgyor(Math.random());
+      pCol[i * 3]     = c.r;
+      pCol[i * 3 + 1] = c.g;
+      pCol[i * 3 + 2] = c.b;
     }
-    particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    particleGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    particleGeo.setAttribute("color", new THREE.BufferAttribute(pCol, 3));
     const particleMat = new THREE.PointsMaterial({
-      color: 0xf4f5f7,
-      size: 0.015,
+      vertexColors: true,
+      size: 0.018,
       transparent: true,
-      opacity: 0.25,
+      opacity: 0.4,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
@@ -72,20 +116,17 @@ export default function ThreeCanvas() {
     };
     window.addEventListener("mousemove", onMouseMove);
 
-    // Animation
+    // Animation loop
     let rafId: number;
     const clock = new THREE.Clock();
-
     const animate = () => {
       rafId = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
-
       torusKnot.rotation.x = t * 0.12 + mouseY * 0.3;
       torusKnot.rotation.y = t * 0.18 + mouseX * 0.3;
       inner.rotation.x = -t * 0.1;
       inner.rotation.y = t * 0.15;
       particles.rotation.y = t * 0.03;
-
       renderer.render(scene, camera);
     };
     animate();
