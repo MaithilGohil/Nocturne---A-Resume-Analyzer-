@@ -1,6 +1,7 @@
 import CustomCursor from "@/components/ui/CustomCursor";
 import FloatingNav from "@/components/ui/FloatingNav";
 import HeroSection from "@/components/hero/HeroSection";
+import ShowcaseMarquee from "@/components/sections/ShowcaseMarquee";
 import FeaturesMarquee from "@/components/sections/FeaturesMarquee";
 import PlatformSection from "@/components/sections/PlatformSection";
 import HowItWorksNew from "@/components/sections/HowItWorksNew";
@@ -16,6 +17,7 @@ export default function Home() {
       <FloatingNav />
       <main>
         <HeroSection />
+        <ShowcaseMarquee />
         <FeaturesMarquee />
         <PlatformSection />
         <HowItWorksNew />

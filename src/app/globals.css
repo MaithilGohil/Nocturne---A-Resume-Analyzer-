@@ -244,3 +244,58 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
 }
+
+/* ── Showcase Marquee Animations ────────────────────────────── */
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl {
+  animation: marquee-rtl 55s linear infinite;
+  will-change: transform;
+}
+
+.marquee-row:hover .animate-marquee-ltr,
+.marquee-row:hover .animate-marquee-rtl {
+  animation-play-state: paused;
+}
+
+.marquee-track:hover .marquee-card {
+  opacity: 0.55;
+}
+
+.marquee-track .marquee-card:hover {
+  opacity: 1;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-ltr,
+  .animate-marquee-rtl {
+    animation: none !important;
+  }
+}
+
