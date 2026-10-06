@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
-/* ── Showcase Data Array (Updated with Green Porsche & Google Keycap) ── */
+/* ── Showcase Data Array (Updated with Mercedes Neon & IBM Quantum) ── */
 export interface ShowcaseItem {
   id: string;
   src: string;
@@ -92,13 +92,13 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
   },
   {
     id: "r2-3",
-    src: "/showcase/google-keyboard.png",
-    alt: "Google Cloud Infrastructure",
+    src: "/showcase/mercedes-neon.png",
+    alt: "Mercedes-Benz Cybernetics & Lighting",
     widthType: "portrait",
-    tag: "Cloud Systems",
-    caption: "Kubernetes Core Engine & Microservices",
-    role: "Google Cloud • Sunnyvale",
-    accentColor: "#FFA800",
+    tag: "Advanced UX / UI",
+    caption: "Cybernetic Lighting & Digital Cockpit Architecture",
+    role: "Mercedes-Benz AG • Stuttgart",
+    accentColor: "#00D2FF",
   },
   {
     id: "r2-4",
@@ -112,13 +112,13 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
   },
   {
     id: "r2-5",
-    src: "/showcase/showcase-2.jpg",
-    alt: "Ferrari Scuderia Dynamics",
+    src: "/showcase/ibm-quantum.png",
+    alt: "IBM Quantum Systems & Research",
     widthType: "wide",
-    tag: "Vehicle Dynamics",
-    caption: "Scuderia Trackside Race Telemetry",
-    role: "Scuderia Ferrari • Maranello",
-    accentColor: "#FF6B00",
+    tag: "Quantum Computing",
+    caption: "Qiskit Quantum Hardware & Superconducting Qubits",
+    role: "IBM Research • Yorktown Heights",
+    accentColor: "#3B82F6",
   },
 ];
 
