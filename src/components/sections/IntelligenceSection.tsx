@@ -78,19 +78,19 @@ function SkillBar({ skill, score, color, delay, trigger, reduced }: {
 }
 
 const SCORES = [
-  { label: "ATS Score",          score: 91, color: "#22c55e" },
-  { label: "Job Fit",             score: 84, color: "#4ade80" },
-  { label: "Achievement Density", score: 77, color: "#86efac" },
-  { label: "Final Score",         score: 87, color: "#22c55e" },
+  { label: "ATS Score",          score: 91, color: "#FF6B00" },
+  { label: "Job Fit",             score: 84, color: "#00D2FF" },
+  { label: "Achievement Density", score: 77, color: "#F97316" },
+  { label: "Final Score",         score: 87, color: "#3B82F6" },
 ];
 
 const SKILLS = [
-  { skill: "Technical Skills",    score: 88, color: "#22c55e" },
-  { skill: "Communication",       score: 74, color: "#4ade80" },
-  { skill: "Leadership",          score: 61, color: "#86efac" },
-  { skill: "Industry Knowledge",  score: 82, color: "#22c55e" },
-  { skill: "Domain Expertise",    score: 79, color: "#4ade80" },
-  { skill: "Education",           score: 95, color: "#86efac" },
+  { skill: "Technical Skills",    score: 88, color: "#FF6B00" },
+  { skill: "Communication",       score: 74, color: "#00D2FF" },
+  { skill: "Leadership",          score: 61, color: "#F97316" },
+  { skill: "Industry Knowledge",  score: 82, color: "#3B82F6" },
+  { skill: "Domain Expertise",    score: 79, color: "#FFA800" },
+  { skill: "Education",           score: 95, color: "#38BDF8" },
 ];
 
 export default function IntelligenceSection() {
@@ -116,9 +116,13 @@ export default function IntelligenceSection() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="mb-16 text-center"
         >
-          <span className="text-xs tracking-[0.3em] text-green-500 uppercase font-medium">Intelligence</span>
+          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Intelligence</span>
           <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
-            Precision <span className="text-green-400">scoring</span>,<br />not estimates
+            Precision{" "}
+            <span className="bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] bg-clip-text text-transparent">
+              scoring
+            </span>
+            ,<br />not estimates
           </h2>
           <p className="mt-4 text-white/40 text-sm max-w-md mx-auto leading-relaxed">
             Every dimension of your resume is quantified. No guesswork. No generic advice.
@@ -131,9 +135,9 @@ export default function IntelligenceSection() {
           <motion.div
             initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.7 }}
-            className="rounded-2xl border border-[#2a2a2a] bg-[#141414]/80 backdrop-blur-sm p-8"
+            className="rounded-2xl border border-[#2a2a2a] bg-[#141414]/80 backdrop-blur-sm p-8 glass-card-3d"
           >
-            <p className="text-xs text-white/25 tracking-widest uppercase mb-8">Score Breakdown</p>
+            <p className="text-xs text-white/25 tracking-widest uppercase font-mono mb-8">Score Breakdown</p>
             <div className="grid grid-cols-2 gap-8">
               {SCORES.map((s) => (
                 <ScoreRing key={s.label} score={s.score} label={s.label} color={s.color} trigger={inView} reduced={reduced} />
@@ -141,11 +145,11 @@ export default function IntelligenceSection() {
             </div>
 
             {/* 3D mockup inset image */}
-            <div className="mt-8 relative rounded-xl overflow-hidden h-32 border border-white/5">
+            <div className="mt-8 relative rounded-xl overflow-hidden h-32 border border-white/8">
               <Image src="/resume-3d-mockup.png" alt="Premium resume mockup" fill className="object-cover object-top" sizes="500px" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/40 to-transparent" />
               <div className="absolute bottom-3 left-4">
-                <span className="text-[10px] text-green-400/60 font-mono tracking-widest">SAMPLE OUTPUT</span>
+                <span className="text-[10px] text-[#FF6B00] font-mono tracking-widest uppercase">SAMPLE OUTPUT</span>
               </div>
             </div>
           </motion.div>
@@ -154,9 +158,9 @@ export default function IntelligenceSection() {
           <motion.div
             initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.12 }}
-            className="rounded-2xl border border-[#2a2a2a] bg-[#141414]/80 backdrop-blur-sm p-8"
+            className="rounded-2xl border border-[#2a2a2a] bg-[#141414]/80 backdrop-blur-sm p-8 glass-card-3d"
           >
-            <p className="text-xs text-white/25 tracking-widest uppercase mb-8">Dimension Analysis</p>
+            <p className="text-xs text-white/25 tracking-widest uppercase font-mono mb-8">Dimension Analysis</p>
             <div className="space-y-5">
               {SKILLS.map((s, i) => (
                 <SkillBar key={s.skill} skill={s.skill} score={s.score} color={s.color} delay={i * 0.1} trigger={inView} reduced={reduced} />
@@ -164,13 +168,13 @@ export default function IntelligenceSection() {
             </div>
 
             {/* Result badge */}
-            <div className="mt-8 p-4 rounded-xl bg-green-500/6 border border-green-500/15 flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl bg-green-500/15 border border-green-500/25 flex items-center justify-center flex-shrink-0">
-                <span className="text-green-400 font-black text-lg">87</span>
+            <div className="mt-8 p-4 rounded-xl bg-orange-500/8 border border-orange-500/20 flex items-center gap-4">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500/20 to-blue-500/20 border border-orange-500/30 flex items-center justify-center flex-shrink-0">
+                <span className="text-[#FF6B00] font-black text-lg">87</span>
               </div>
               <div>
                 <div className="text-sm font-semibold text-white">Elite Candidate Profile</div>
-                <div className="text-xs text-white/30 mt-0.5">Top 8% of all analyzed resumes</div>
+                <div className="text-xs text-[#00D2FF] mt-0.5 font-medium">Top 8% of all analyzed resumes</div>
               </div>
             </div>
           </motion.div>

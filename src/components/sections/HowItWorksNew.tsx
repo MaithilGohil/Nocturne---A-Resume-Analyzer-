@@ -11,18 +11,21 @@ const STEPS = [
     title: "Upload Your Resume",
     desc: "Paste your resume text. Our parser extracts every signal — skills, achievements, gaps, and formatting flaws — in under 3 seconds.",
     details: ["Instant extraction", "Format preservation", "Multi-page support"],
+    accent: "#FF6B00",
   },
   {
     num: "02", icon: Cpu,
     title: "AI Analyzes Everything",
     desc: "Seven dimensions. Hundreds of data points. Cross-referenced against live job market trends, ATS rules, and hiring patterns from 12,000+ companies.",
     details: ["7-axis scoring", "ATS compatibility check", "Market demand mapping"],
+    accent: "#3B82F6",
   },
   {
     num: "03", icon: Trophy,
     title: "Get Your Competitive Edge",
     desc: "Receive a precise intelligence report: your final score, rewritten bullet points, prioritised action items, and a long-term career strategy.",
     details: ["Rewritten bullet points", "Priority action plan", "Career strategy roadmap"],
+    accent: "#FFA800",
   },
 ];
 
@@ -52,9 +55,9 @@ export default function HowItWorksNew() {
 
           {/* Header */}
           <div className="mb-12">
-            <span className="text-xs tracking-[0.3em] text-green-500 uppercase font-medium">Methodology</span>
+            <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Methodology</span>
             <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
-              How It <span className="text-green-400">Works</span>
+              How It <span className="bg-gradient-to-r from-[#FF6B00] to-[#3B82F6] bg-clip-text text-transparent">Works</span>
             </h2>
           </div>
 
@@ -65,7 +68,10 @@ export default function HowItWorksNew() {
               {/* Progress line */}
               <div className="absolute left-5 top-3 bottom-3 w-px bg-white/6">
                 {!reduced && (
-                  <motion.div className="absolute top-0 w-full bg-green-400 rounded-full" style={{ height: progressH }} />
+                  <motion.div
+                    className="absolute top-0 w-full bg-gradient-to-b from-[#FF6B00] via-[#FFA800] to-[#3B82F6] rounded-full shadow-[0_0_12px_rgba(255,107,0,0.5)]"
+                    style={{ height: progressH }}
+                  />
                 )}
               </div>
 
@@ -81,18 +87,24 @@ export default function HowItWorksNew() {
                       transition={{ duration: 0.4, ease: "easeOut" }}
                     >
                       {/* Dot */}
-                      <div className={`absolute left-0 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${active ? "border-green-400 bg-green-500/10" : "border-[#2a2a2a] bg-[#141414]"}`}>
-                        <Icon className={`w-4 h-4 transition-colors duration-300 ${active ? "text-green-400" : "text-white/15"}`} />
+                      <div
+                        className={`absolute left-0 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                          active
+                            ? "border-[#FF6B00] bg-orange-500/15 shadow-[0_0_15px_rgba(255,107,0,0.3)]"
+                            : "border-[#2a2a2a] bg-[#141414]"
+                        }`}
+                      >
+                        <Icon className={`w-4 h-4 transition-colors duration-300 ${active ? "text-[#FF6B00]" : "text-white/15"}`} />
                       </div>
 
                       <div className="flex-1">
-                        <div className="text-xs text-green-500/50 font-mono mb-1">{step.num}</div>
+                        <div className="text-xs text-[#FF6B00]/70 font-mono mb-1">{step.num}</div>
                         <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{step.title}</h3>
                         <p className="text-sm text-white/35 leading-relaxed max-w-sm mb-4">{step.desc}</p>
                         <div className="space-y-1.5">
                           {step.details.map((d, j) => (
                             <div key={j} className="flex items-center gap-2 text-xs text-white/25">
-                              <span className="w-1 h-1 rounded-full bg-green-400/50 flex-shrink-0" />
+                              <span className="w-1 h-1 rounded-full bg-orange-400/60 flex-shrink-0" />
                               {d}
                             </div>
                           ))}
@@ -115,7 +127,7 @@ export default function HowItWorksNew() {
                 style={{ perspective: 1000, transformStyle: "preserve-3d" }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/70 border border-white/6">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/80 border border-white/10 glass-card-3d">
                   <Image
                     src="/resume-templates.png"
                     alt="Resume being analyzed"
@@ -130,14 +142,14 @@ export default function HowItWorksNew() {
                       className="absolute inset-0"
                       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     >
-                      <div className="absolute inset-0 bg-green-400/4" />
+                      <div className="absolute inset-0 bg-blue-500/10" />
                       <motion.div
-                        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-70"
+                        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00D2FF] to-transparent opacity-80"
                         animate={{ top: ["0%", "100%", "0%"] }}
                         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
                       />
                       <motion.div
-                        className="absolute inset-x-0 h-12 bg-gradient-to-b from-green-400/10 to-transparent"
+                        className="absolute inset-x-0 h-12 bg-gradient-to-b from-[#00D2FF]/20 to-transparent"
                         animate={{ top: ["0%", "90%", "0%"] }}
                         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
                       />
@@ -147,17 +159,17 @@ export default function HowItWorksNew() {
                   {/* Step 2 — score overlay */}
                   {!reduced && activeStep === 2 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center bg-black/50"
+                      className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-xs"
                       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                     >
                       <motion.div
                         initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="bg-[#0a0a0a]/90 backdrop-blur-sm rounded-2xl p-7 border border-green-500/30 text-center"
+                        className="bg-[#0a0a0a]/95 backdrop-blur-md rounded-2xl p-7 border border-orange-500/40 text-center shadow-[0_0_35px_rgba(255,107,0,0.25)]"
                       >
-                        <div className="text-5xl font-black text-green-400">87</div>
-                        <div className="text-xs text-white/40 mt-1 tracking-widest uppercase">Intelligence Score</div>
-                        <div className="mt-3 text-[11px] text-green-400/70">Top 8% of analyzed resumes</div>
+                        <div className="text-5xl font-black bg-gradient-to-r from-[#FF6B00] to-[#FFA800] bg-clip-text text-transparent">87</div>
+                        <div className="text-xs text-white/40 mt-1 tracking-widest uppercase font-mono">Intelligence Score</div>
+                        <div className="mt-3 text-[11px] text-[#00D2FF] font-medium">Top 8% of analyzed resumes</div>
                       </motion.div>
                     </motion.div>
                   )}

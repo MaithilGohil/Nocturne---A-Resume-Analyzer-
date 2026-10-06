@@ -37,15 +37,15 @@ export default function AnalysisPanel({ result, onReset }: AnalysisPanelProps) {
 
   const riskColor = (risk: string) => {
     if (risk === "Critical") return "#FF4F4F";
-    if (risk === "High") return "#FF9F4F";
-    if (risk === "Medium") return "#4F8EFF";
-    return "#00FFA3";
+    if (risk === "High") return "#FF6B00";
+    if (risk === "Medium") return "#3B82F6";
+    return "#00D2FF";
   };
 
   const impactColor = (impact: string) => {
-    if (impact === "High") return "#00FFA3";
-    if (impact === "Medium") return "#4F8EFF";
-    return "#888";
+    if (impact === "High") return "#FF6B00";
+    if (impact === "Medium") return "#00D2FF";
+    return "#3B82F6";
   };
 
   return (
@@ -58,17 +58,17 @@ export default function AnalysisPanel({ result, onReset }: AnalysisPanelProps) {
       {/* Header bar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-[#00FFA3] animate-pulse" />
-          <span className="text-sm text-[#00FFA3] font-medium tracking-wide">
+          <div className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
+          <span className="text-sm text-[#FF6B00] font-medium tracking-wide">
             Analysis Complete
           </span>
-          <span className="text-xs text-[#444] border border-white/8 px-2 py-0.5 rounded-full">
+          <span className="text-xs text-white/40 border border-white/8 px-2 py-0.5 rounded-full font-mono">
             Confidence: {result.confidenceLevel}
           </span>
         </div>
         <button
           onClick={onReset}
-          className="flex items-center gap-2 text-xs text-[#555] hover:text-white transition-colors group"
+          className="flex items-center gap-2 text-xs text-white/50 hover:text-[#FF6B00] transition-colors group"
         >
           <RefreshCw className="w-3 h-3 group-hover:rotate-180 transition-transform duration-500" />
           New Analysis
@@ -76,12 +76,12 @@ export default function AnalysisPanel({ result, onReset }: AnalysisPanelProps) {
       </div>
 
       {/* Score row */}
-      <div className="glass rounded-2xl p-5 sm:p-8">
+      <div className="glass rounded-2xl p-5 sm:p-8 glass-card-3d">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-8 items-center">
-          <FitScoreChart score={result.fitScore} label="Job Fit" color="#F4F5F7" size={120} />
-          <FitScoreChart score={result.atsScore} label="ATS Score" color="#888888" size={120} />
-          <FitScoreChart score={result.achievementScore} label="Achievement" color="#00FFA3" size={120} />
-          <FitScoreChart score={result.finalScore} label="Final Score" color="#C0C0C0" size={120} />
+          <FitScoreChart score={result.fitScore} label="Job Fit" color="#FF6B00" size={120} />
+          <FitScoreChart score={result.atsScore} label="ATS Score" color="#00D2FF" size={120} />
+          <FitScoreChart score={result.achievementScore} label="Achievement" color="#F97316" size={120} />
+          <FitScoreChart score={result.finalScore} label="Final Score" color="#3B82F6" size={120} />
         </div>
       </div>
 
@@ -103,8 +103,8 @@ export default function AnalysisPanel({ result, onReset }: AnalysisPanelProps) {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
                 activeTab === tab.id
-                  ? "bg-[#F4F5F7] text-[#050505]"
-                  : "text-[#555] hover:text-white"
+                  ? "bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black font-semibold shadow-[0_0_15px_rgba(255,107,0,0.25)]"
+                  : "text-white/50 hover:text-white"
               }`}
             >
               <Icon className="w-3.5 h-3.5 flex-shrink-0" />

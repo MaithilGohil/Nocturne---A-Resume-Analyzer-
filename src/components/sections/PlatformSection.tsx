@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { FileSearch, Activity, GitBranch, BarChart3, MessageCircle } from "lucide-react";
 
-/* ── Mini Animations ─────────────────────────────────────────── */
+/* ── Mini Animations (Orange & Electric Blue Palette) ────────── */
 
 function ScanAnim({ r }: { r: boolean }) {
   return (
@@ -16,12 +16,12 @@ function ScanAnim({ r }: { r: boolean }) {
       {!r && (
         <>
           <motion.div
-            className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"
+            className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF6B00] to-transparent"
             animate={{ top: ["8%", "92%", "8%"] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute inset-x-0 h-10 bg-gradient-to-b from-green-400/8 to-transparent"
+            className="absolute inset-x-0 h-10 bg-gradient-to-b from-[#FF6B00]/15 to-transparent"
             animate={{ top: ["0%", "82%", "0%"] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -51,8 +51,8 @@ function RadarAnim({ r }: { r: boolean }) {
         ))}
         <motion.polygon
           points={dataPts}
-          fill="rgba(34,197,94,0.15)"
-          stroke="#22c55e"
+          fill="rgba(59,130,246,0.18)"
+          stroke="#00D2FF"
           strokeWidth={1.2}
           initial={{ opacity: 0, scale: 0 }}
           animate={r ? { opacity: 1, scale: 1 } : { opacity: [0, 1, 1, 0], scale: [0, 1, 1, 0] }}
@@ -70,7 +70,7 @@ function RoadmapAnim({ r }: { r: boolean }) {
     <svg viewBox="0 0 100 70" className="w-full h-20">
       <motion.path
         d="M15,50 C30,50 35,18 50,18 C65,18 70,50 85,50"
-        fill="none" stroke="#22c55e" strokeWidth={1.5} strokeLinecap="round"
+        fill="none" stroke="#FF6B00" strokeWidth={1.5} strokeLinecap="round"
         initial={{ pathLength: 0 }}
         animate={r ? { pathLength: 1 } : { pathLength: [0, 1, 1, 0] }}
         transition={r ? { duration: 0.8 } : { duration: 2.5, repeat: Infinity, repeatDelay: 0.8, ease: "easeInOut" }}
@@ -79,7 +79,7 @@ function RoadmapAnim({ r }: { r: boolean }) {
         <g key={i}>
           <motion.circle
             cx={n.x} cy={n.y} r={3.5}
-            fill="#141414" stroke="#22c55e" strokeWidth={1.2}
+            fill="#141414" stroke="#FFA800" strokeWidth={1.2}
             initial={{ scale: 0, opacity: 0 }}
             animate={r ? { scale: 1, opacity: 1 } : { scale: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
             transition={r ? { duration: 0.5, delay: i * 0.2 } : { duration: 3.5, delay: i * 0.5, repeat: Infinity, repeatDelay: 0 }}
@@ -94,9 +94,9 @@ function RoadmapAnim({ r }: { r: boolean }) {
 
 function BarAnim({ r }: { r: boolean }) {
   const bars = [
-    { h: 50, c: "rgba(34,197,94,0.4)" }, { h: 65, c: "rgba(34,197,94,0.65)" },
-    { h: 44, c: "rgba(34,197,94,0.35)" }, { h: 80, c: "rgba(34,197,94,0.8)" },
-    { h: 38, c: "rgba(34,197,94,0.3)" }, { h: 60, c: "rgba(34,197,94,0.55)" },
+    { h: 50, c: "rgba(59,130,246,0.5)" }, { h: 65, c: "rgba(255,107,0,0.7)" },
+    { h: 44, c: "rgba(0,210,255,0.45)" }, { h: 80, c: "rgba(249,115,22,0.85)" },
+    { h: 38, c: "rgba(59,130,246,0.4)" }, { h: 60, c: "rgba(255,107,0,0.6)" },
   ];
   return (
     <div className="flex items-end gap-2 h-24">
@@ -133,10 +133,10 @@ function ChatAnim({ r }: { r: boolean }) {
             duration: 4, delay: b.delay, repeat: Infinity, repeatDelay: 0, times: [0, 0.15, 0.75, 1],
           }}
         >
-          <div className={`rounded-2xl px-3 py-2 max-w-[80%] ${b.right ? "bg-green-500/20 text-green-300 rounded-br-sm" : "bg-white/6 rounded-bl-sm"}`}>
+          <div className={`rounded-2xl px-3 py-2 max-w-[80%] ${b.right ? "bg-orange-500/20 text-orange-200 rounded-br-sm border border-orange-500/20" : "bg-blue-500/15 text-blue-200 rounded-bl-sm border border-blue-500/20"}`}>
             <span className="flex gap-0.5">
               {[0, 0.2, 0.4].map((d, j) => (
-                <motion.span key={j} className="text-[10px] text-white/50" animate={r ? {} : { opacity: [0.2, 1, 0.2] }} transition={r ? {} : { duration: 0.8, delay: d, repeat: Infinity }}>●</motion.span>
+                <motion.span key={j} className="text-[10px] text-white/60" animate={r ? {} : { opacity: [0.2, 1, 0.2] }} transition={r ? {} : { duration: 0.8, delay: d, repeat: Infinity }}>●</motion.span>
               ))}
             </span>
           </div>
@@ -146,7 +146,7 @@ function ChatAnim({ r }: { r: boolean }) {
   );
 }
 
-/* ── Spotlight Card ───────────────────────────────────────────── */
+/* ── Spotlight Card with Dynamic Border Glow ─────────────────── */
 
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -154,14 +154,18 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
   return (
     <div
       className={`group relative rounded-2xl p-px transition-all duration-500 ${className}`}
-      style={{ background: hovered ? `radial-gradient(380px circle at ${pos.x}px ${pos.y}px, rgba(34,197,94,0.28), #2a2a2a 60%)` : "#1e1e1e" }}
+      style={{
+        background: hovered
+          ? `radial-gradient(380px circle at ${pos.x}px ${pos.y}px, rgba(255,107,0,0.32), rgba(59,130,246,0.2) 40%, #2a2a2a 70%)`
+          : "#1e1e1e",
+      }}
       onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos({ x: e.clientX - r.left, y: e.clientY - r.top }); }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div
         className="relative h-full rounded-[calc(1rem-1px)] bg-[#141414] overflow-hidden"
-        style={hovered ? { background: `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(34,197,94,0.03), #141414 55%)` } : {}}
+        style={hovered ? { background: `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(255,107,0,0.04), #141414 55%)` } : {}}
       >
         {children}
       </div>
@@ -172,11 +176,11 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 /* ── Section ──────────────────────────────────────────────────── */
 
 const CARDS = [
-  { icon: FileSearch, title: "Resume Scanner", desc: "Scans every line for ATS signals, keyword density, and formatting red flags.", anim: "scan", span: "lg:col-span-2" },
-  { icon: Activity,   title: "7-Axis Radar",    desc: "Scores across seven competency dimensions simultaneously.", anim: "radar", span: "" },
-  { icon: GitBranch,  title: "Career Roadmap",  desc: "Auto-generates a prioritised skill development path.", anim: "roadmap", span: "" },
-  { icon: BarChart3,  title: "Market Trends",   desc: "Real-time job market demand mapped to your skill profile.", anim: "bars", span: "" },
-  { icon: MessageCircle, title: "AI Coach",     desc: "Conversational guidance through every career decision.", anim: "chat", span: "" },
+  { icon: FileSearch, title: "Resume Scanner", desc: "Scans every line for ATS signals, keyword density, and formatting red flags.", anim: "scan", span: "lg:col-span-2", color: "text-[#FF6B00] bg-orange-500/10 border-orange-500/20" },
+  { icon: Activity,   title: "7-Axis Radar",    desc: "Scores across seven competency dimensions simultaneously.", anim: "radar", span: "", color: "text-[#00D2FF] bg-blue-500/10 border-blue-500/20" },
+  { icon: GitBranch,  title: "Career Roadmap",  desc: "Auto-generates a prioritised skill development path.", anim: "roadmap", span: "", color: "text-[#F97316] bg-orange-500/10 border-orange-500/20" },
+  { icon: BarChart3,  title: "Market Trends",   desc: "Real-time job market demand mapped to your skill profile.", anim: "bars", span: "", color: "text-[#3B82F6] bg-blue-500/10 border-blue-500/20" },
+  { icon: MessageCircle, title: "AI Coach",     desc: "Conversational guidance through every career decision.", anim: "chat", span: "", color: "text-[#FFA800] bg-amber-500/10 border-amber-500/20" },
 ];
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
@@ -210,9 +214,12 @@ export default function PlatformSection() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <span className="text-xs tracking-[0.3em] text-green-500 uppercase font-medium">Platform</span>
+          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Platform</span>
           <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
-            Everything you need to{" "}<span className="text-green-400">outperform</span>
+            Everything you need to{" "}
+            <span className="bg-gradient-to-r from-[#FF6B00] to-[#3B82F6] bg-clip-text text-transparent">
+              outperform
+            </span>
           </h2>
           <p className="mt-4 text-white/40 max-w-lg text-sm leading-relaxed">
             Five intelligent tools. One unified platform. Built to turn your resume into a precision instrument.
@@ -230,8 +237,8 @@ export default function PlatformSection() {
               <motion.div key={card.title} variants={item} className={`${card.span} flex`}>
                 <SpotlightCard className="flex-1">
                   <div className="p-6 h-full flex flex-col">
-                    <div className="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
-                      <Icon className="w-4 h-4 text-green-400" />
+                    <div className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
+                      <Icon className="w-4 h-4" />
                     </div>
                     <h3 className="text-sm font-semibold text-white mb-1">{card.title}</h3>
                     <p className="text-xs text-white/35 leading-relaxed mb-5">{card.desc}</p>
@@ -247,10 +254,10 @@ export default function PlatformSection() {
             <SpotlightCard>
               <div className="relative overflow-hidden rounded-[calc(1rem-1px)]" style={{ minHeight: 260 }}>
                 <Image src="/laptop-saas.png" alt="Nocturne platform in action" fill className="object-cover object-top opacity-75" sizes="(max-width: 1200px) 100vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8">
-                  <div className="inline-flex items-center gap-2 text-xs text-green-400 bg-green-500/10 border border-green-500/20 rounded-full px-3 py-1 mb-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  <div className="inline-flex items-center gap-2 text-xs text-[#FF6B00] bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
                     Intelligence Engine Active
                   </div>
                   <p className="text-white font-semibold text-lg max-w-md leading-snug">

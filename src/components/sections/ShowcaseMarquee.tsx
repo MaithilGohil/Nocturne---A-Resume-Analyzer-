@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
-/* ── Showcase Data Array (Easily customizable) ────────────────── */
+/* ── Showcase Data Array (10 Curated Items Across 2 Rows) ────── */
 export interface ShowcaseItem {
   id: string;
   src: string;
@@ -13,137 +13,184 @@ export interface ShowcaseItem {
   tag?: string;
   caption?: string;
   role?: string;
+  accentColor?: string;
 }
 
 export const ROW_1_ITEMS: ShowcaseItem[] = [
   {
     id: "r1-1",
-    src: "/showcase/showcase-1.png",
-    alt: "J.P. Morgan Placement",
+    src: "/showcase/showcase-6.png",
+    alt: "Porsche 911 GT3 Motorsport Engineering",
     widthType: "wide",
-    tag: "Investment Banking",
-    caption: "Quantitative Analyst Portfolio",
-    role: "J.P. Morgan • New York",
+    tag: "Automotive Dynamics",
+    caption: "Motorsport Aerodynamics & Powertrain",
+    role: "Porsche Motorsport • Stuttgart",
+    accentColor: "#FF6B00",
   },
   {
     id: "r1-2",
-    src: "/showcase/showcase-2.jpg",
-    alt: "Ferrari Engineering",
+    src: "/showcase/showcase-9.png",
+    alt: "Cyberpunk Spatial Computing",
     widthType: "portrait",
-    tag: "Automotive & Aerodynamics",
-    caption: "Formula 1 Vehicle Dynamics",
-    role: "Scuderia Ferrari • Maranello",
+    tag: "Spatial Computing",
+    caption: "Neural XR Headset & Haptics",
+    role: "DeepMind XR • London",
+    accentColor: "#F97316",
   },
   {
     id: "r1-3",
-    src: "/showcase/showcase-3.png",
-    alt: "ISRO Space Systems",
-    widthType: "portrait",
-    tag: "Aerospace Systems",
-    caption: "Lunar & Solar Mission Systems",
-    role: "ISRO • Propulsion Division",
+    src: "/showcase/showcase-1.png",
+    alt: "J.P. Morgan Quantitative Finance",
+    widthType: "square",
+    tag: "Investment Banking",
+    caption: "Quantitative Portfolio Architecture",
+    role: "J.P. Morgan • New York",
+    accentColor: "#3B82F6",
   },
   {
     id: "r1-4",
-    src: "/showcase/showcase-4.jpg",
-    alt: "Apple Product Design",
-    widthType: "square",
+    src: "/showcase/showcase-8.png",
+    alt: "Apple Liquid Metallic Industrial Design",
+    widthType: "portrait",
     tag: "Industrial Design",
-    caption: "Human Interface & Hardware",
-    role: "Apple • Cupertino",
+    caption: "Liquid Metallic Surface Finishes",
+    role: "Apple Design Studio • Cupertino",
+    accentColor: "#00D2FF",
   },
   {
     id: "r1-5",
-    src: "/showcase/showcase-5.png",
-    alt: "Hublot Precision Horology",
-    widthType: "square",
-    tag: "Haute Horlogerie",
-    caption: "Chronograph Movement Architecture",
-    role: "Hublot • Geneva",
+    src: "/showcase/showcase-7.png",
+    alt: "F1 Legacy Mercedes AMG",
+    widthType: "wide",
+    tag: "Formula 1 Racing",
+    caption: "Aerodynamic Simulation & Telemetry",
+    role: "Mercedes-AMG Petronas F1 • Brackley",
+    accentColor: "#3B82F6",
   },
 ];
 
 export const ROW_2_ITEMS: ShowcaseItem[] = [
   {
     id: "r2-1",
-    src: "/showcase/showcase-3.png",
-    alt: "ISRO Space Flight Division",
+    src: "/showcase/showcase-10.png",
+    alt: "Editorial Creative Direction Just Do It",
     widthType: "portrait",
-    tag: "Mission Control",
-    caption: "Orbital Mechanics & Telemetry",
-    role: "ISRO • Bangalore",
+    tag: "Creative Direction",
+    caption: "Editorial Narrative & Campaign Lead",
+    role: "Wieden+Kennedy • Portland",
+    accentColor: "#FF6B00",
   },
   {
     id: "r2-2",
+    src: "/showcase/showcase-3.png",
+    alt: "ISRO Lunar Exploration",
+    widthType: "portrait",
+    tag: "Aerospace Systems",
+    caption: "Deep Space Propulsion & Telemetry",
+    role: "ISRO • Mission Operations",
+    accentColor: "#3B82F6",
+  },
+  {
+    id: "r2-3",
     src: "/showcase/showcase-4.jpg",
-    alt: "Apple Architecture",
+    alt: "Apple Neural Architecture",
     widthType: "wide",
     tag: "Silicon Engineering",
     caption: "Neural Engine System Architecture",
     role: "Apple • Hardware Technologies",
-  },
-  {
-    id: "r2-3",
-    src: "/showcase/showcase-5.png",
-    alt: "Hublot Precision Craft",
-    widthType: "portrait",
-    tag: "Mechanical Precision",
-    caption: "High-Complication Calibre Lead",
-    role: "Hublot • Nyon",
+    accentColor: "#00D2FF",
   },
   {
     id: "r2-4",
-    src: "/showcase/showcase-1.png",
-    alt: "J.P. Morgan Global Finance",
+    src: "/showcase/showcase-5.png",
+    alt: "Hublot Horology Calibre Lead",
     widthType: "square",
-    tag: "Algorithmic Trading",
-    caption: "High Frequency Execution Systems",
-    role: "J.P. Morgan • London",
+    tag: "Haute Horlogerie",
+    caption: "Chronograph Movement Architecture",
+    role: "Hublot • Geneva",
+    accentColor: "#F97316",
   },
   {
     id: "r2-5",
     src: "/showcase/showcase-2.jpg",
-    alt: "Ferrari Performance Engineering",
+    alt: "Ferrari Scuderia Dynamics",
     widthType: "wide",
-    tag: "Telemetry & Performance",
-    caption: "Trackside Race Strategy & Telemetry",
-    role: "Scuderia Ferrari • Racing Team",
+    tag: "Vehicle Dynamics",
+    caption: "Scuderia Trackside Race Telemetry",
+    role: "Scuderia Ferrari • Maranello",
+    accentColor: "#FF6B00",
   },
 ];
 
-/* ── Card Component ───────────────────────────────────────────── */
+/* ── 3D Tilt Card Component ───────────────────────────────────── */
 function ShowcaseCard({ item }: { item: ShowcaseItem }) {
+  const reducedMotion = useReducedMotion() ?? false;
+  const [tilt, setTilt] = useState({ x: 0, y: 0, hovered: false });
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reducedMotion || isTouch) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientY - rect.top) / rect.height - 0.5) * -6; // max 6deg
+    const y = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
+    setTilt({ x, y, hovered: true });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0, hovered: false });
+  };
+
   const widthClasses = {
-    portrait: "w-[180px] sm:w-[260px] md:w-[280px]",
-    square: "w-[220px] sm:w-[340px] md:w-[400px]",
-    wide: "w-[300px] sm:w-[520px] md:w-[680px]",
+    portrait: "w-[190px] sm:w-[260px] md:w-[290px]",
+    square: "w-[230px] sm:w-[340px] md:w-[410px]",
+    wide: "w-[310px] sm:w-[530px] md:w-[700px]",
   }[item.widthType];
+
+  const transformStyle = reducedMotion
+    ? undefined
+    : tilt.hovered
+    ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px) scale(1.02)`
+    : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)";
 
   return (
     <div
-      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl border border-[#2a2a2a] bg-[#141414] overflow-hidden transition-all duration-300 hover:border-[#22c55e]/50 hover:shadow-[0_0_24px_rgba(34,197,94,0.15)] select-none`}
-      style={{ willChange: "transform, opacity" }}
+      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl glass-card-3d bg-[#141414] overflow-hidden select-none cursor-pointer`}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setTilt((t) => ({ ...t, hovered: true }))}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: transformStyle,
+        transition: "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease",
+        willChange: "transform, opacity",
+      }}
     >
-      {/* Media */}
+      {/* Light Sheen Sweep Effect on Hover */}
+      <div className="sheen-layer" />
+
+      {/* Media Container */}
       <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden flex items-center justify-center">
         <Image
           src={item.src}
           alt={item.alt}
           fill
-          sizes="(max-width: 640px) 300px, (max-width: 1024px) 500px, 700px"
+          sizes="(max-width: 640px) 310px, (max-width: 1024px) 540px, 720px"
           loading="lazy"
           decoding="async"
           className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        
+
         {/* Subtle Dark Gradient Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/40 to-transparent pointer-events-none" />
       </div>
 
-      {/* Top Tag */}
+      {/* Top Tag with Dynamic Accent */}
       {item.tag && (
         <div className="absolute top-3.5 left-3.5 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-black/60 backdrop-blur-md border border-white/10 text-white/80 group-hover:border-[#22c55e]/40 group-hover:text-[#22c55e] transition-colors duration-300">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-black/70 backdrop-blur-md border border-white/12 text-white/90 group-hover:border-[#FF6B00]/50 group-hover:text-[#FF6B00] transition-colors duration-300">
             {item.tag}
           </span>
         </div>
@@ -152,7 +199,10 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
       {/* Bottom Info */}
       <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 z-10 flex flex-col justify-end">
         {item.role && (
-          <span className="text-[11px] font-mono text-[#22c55e] font-medium tracking-wide mb-1">
+          <span
+            className="text-[11px] font-mono font-medium tracking-wide mb-1"
+            style={{ color: item.accentColor || "#FF6B00" }}
+          >
             {item.role}
           </span>
         )}
@@ -194,8 +244,9 @@ export default function ShowcaseMarquee() {
       id="showcase"
       className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden border-t border-b border-[#2a2a2a]/40"
     >
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-green-500/5 blur-[140px] pointer-events-none" />
+      {/* Dual ambient glow: Blue left, Orange right */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-blue-500/8 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-orange-500/8 blur-[150px] pointer-events-none" />
 
       {/* Header */}
       <motion.div
@@ -206,16 +257,16 @@ export default function ShowcaseMarquee() {
         className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-14 sm:mb-18"
       >
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" />
-          <span className="text-xs tracking-[0.3em] text-[#22c55e] uppercase font-mono font-medium">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
+          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">
             SHOWCASE
           </span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white">
-          Built for people who <span className="text-[#22c55e]">get hired</span>
+          Built for people who <span className="bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] bg-clip-text text-transparent">get hired</span>
         </h2>
         <p className="mt-4 text-white/40 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-          From Wall Street quant desks to aerospace command centers — candidate portfolios optimized by Nocturne.
+          From Wall Street quant desks to aerospace engineering labs — candidate portfolios optimized by Nocturne.
         </p>
       </motion.div>
 
@@ -225,7 +276,7 @@ export default function ShowcaseMarquee() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="space-y-3 sm:space-y-4 w-full"
+        className="space-y-4 sm:space-y-5 w-full"
       >
         {/* ROW 1: Moves LEFT TO RIGHT (45s) */}
         <div className={`marquee-row relative w-full ${reducedMotion ? "overflow-x-auto scrollbar-hide px-4" : "overflow-hidden marquee-mask"}`}>

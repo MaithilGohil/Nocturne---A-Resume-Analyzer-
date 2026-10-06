@@ -201,22 +201,22 @@ export default function AnalyzePage() {
                   </motion.div>
                 )}
 
-                {/* Analyze button */}
+                  {/* Analyze button */}
                 <div className="flex justify-center">
                   <button
                     id="analyze-submit-btn"
                     onClick={handleAnalyze}
                     disabled={state === "analyzing"}
-                    className="group relative flex items-center gap-3 px-8 py-4 rounded-full bg-[#F4F5F7] text-[#050505] font-bold text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed hover:bg-white hover:shadow-[0_0_60px_rgba(244,245,247,0.2)] hover:scale-105 transition-all duration-300 w-full sm:w-auto justify-center"
+                    className="group relative flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black font-bold text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed hover:brightness-110 hover:shadow-[0_0_50px_rgba(255,107,0,0.35)] hover:scale-105 transition-all duration-300 w-full sm:w-auto justify-center"
                   >
                     {state === "analyzing" ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      <span className="truncate max-w-[200px] sm:max-w-none">{loadingMsg}</span>
+                        <Loader2 className="w-4 h-4 animate-spin text-black" />
+                        <span className="truncate max-w-[200px] sm:max-w-none text-black font-semibold">{loadingMsg}</span>
                       </>
                     ) : (
                       <>
-                        <Zap className="w-4 h-4 fill-white" />
+                        <Zap className="w-4 h-4 fill-black text-black" />
                         Run Intelligence Analysis
                       </>
                     )}
@@ -232,20 +232,20 @@ export default function AnalyzePage() {
                       exit={{ opacity: 0 }}
                       className="mt-8 max-w-md mx-auto"
                     >
-                      <div className="h-px bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ x: "-100%" }}
                           animate={{ x: "200%" }}
                           transition={{
-                            duration: 2.5,
+                            duration: 2.2,
                             repeat: Infinity,
                             ease: "easeInOut",
                           }}
-                          className="h-full w-1/2 bg-gradient-to-r from-transparent via-[#4F8EFF] to-transparent"
+                          className="h-full w-1/2 bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] rounded-full shadow-[0_0_12px_rgba(255,107,0,0.6)]"
                         />
                       </div>
-                      <p className="text-center text-xs text-[#333] mt-3">
-                        Deep analysis in progress...
+                      <p className="text-center text-xs text-white/40 mt-3 font-mono">
+                        Deep intelligence analysis in progress...
                       </p>
                     </motion.div>
                   )}
