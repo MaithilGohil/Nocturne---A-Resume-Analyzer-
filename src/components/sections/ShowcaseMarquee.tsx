@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
-/* ── Showcase Data Array (10 Curated Items Across 2 Rows) ────── */
+/* ── Showcase Data Array (Updated with Green Porsche & Google Keycap) ── */
 export interface ShowcaseItem {
   id: string;
   src: string;
@@ -19,16 +19,36 @@ export interface ShowcaseItem {
 export const ROW_1_ITEMS: ShowcaseItem[] = [
   {
     id: "r1-1",
-    src: "/showcase/showcase-6.png",
-    alt: "Porsche 911 GT3 Motorsport Engineering",
+    src: "/showcase/porsche-green.png",
+    alt: "Porsche GT3 RS Motorsport Engineering",
     widthType: "wide",
     tag: "Automotive Dynamics",
-    caption: "Motorsport Aerodynamics & Powertrain",
-    role: "Porsche Motorsport • Stuttgart",
-    accentColor: "#FF6B00",
+    caption: "GT3 RS Aerodynamics & Trackside Telemetry",
+    role: "Porsche Motorsport • Weissach",
+    accentColor: "#22c55e",
   },
   {
     id: "r1-2",
+    src: "/showcase/google-keyboard.png",
+    alt: "Google Machine Learning Systems",
+    widthType: "portrait",
+    tag: "Machine Learning",
+    caption: "Search Infrastructure & Distributed TPU Architecture",
+    role: "Google DeepMind • Mountain View",
+    accentColor: "#FF6B00",
+  },
+  {
+    id: "r1-3",
+    src: "/showcase/showcase-1.png",
+    alt: "J.P. Morgan Quantitative Finance",
+    widthType: "square",
+    tag: "Investment Banking",
+    caption: "Quantitative Portfolio & Risk Architecture",
+    role: "J.P. Morgan • New York",
+    accentColor: "#3B82F6",
+  },
+  {
+    id: "r1-4",
     src: "/showcase/showcase-9.png",
     alt: "Cyberpunk Spatial Computing",
     widthType: "portrait",
@@ -38,34 +58,14 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
     accentColor: "#F97316",
   },
   {
-    id: "r1-3",
-    src: "/showcase/showcase-1.png",
-    alt: "J.P. Morgan Quantitative Finance",
-    widthType: "square",
-    tag: "Investment Banking",
-    caption: "Quantitative Portfolio Architecture",
-    role: "J.P. Morgan • New York",
-    accentColor: "#3B82F6",
-  },
-  {
-    id: "r1-4",
-    src: "/showcase/showcase-8.png",
-    alt: "Apple Liquid Metallic Industrial Design",
-    widthType: "portrait",
-    tag: "Industrial Design",
-    caption: "Liquid Metallic Surface Finishes",
-    role: "Apple Design Studio • Cupertino",
-    accentColor: "#00D2FF",
-  },
-  {
     id: "r1-5",
     src: "/showcase/showcase-7.png",
     alt: "F1 Legacy Mercedes AMG",
     widthType: "wide",
     tag: "Formula 1 Racing",
-    caption: "Aerodynamic Simulation & Telemetry",
+    caption: "Aerodynamic Simulation & High-Speed Telemetry",
     role: "Mercedes-AMG Petronas F1 • Brackley",
-    accentColor: "#3B82F6",
+    accentColor: "#00D2FF",
   },
 ];
 
@@ -92,13 +92,13 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
   },
   {
     id: "r2-3",
-    src: "/showcase/showcase-4.jpg",
-    alt: "Apple Neural Architecture",
-    widthType: "wide",
-    tag: "Silicon Engineering",
-    caption: "Neural Engine System Architecture",
-    role: "Apple • Hardware Technologies",
-    accentColor: "#00D2FF",
+    src: "/showcase/google-keyboard.png",
+    alt: "Google Cloud Infrastructure",
+    widthType: "portrait",
+    tag: "Cloud Systems",
+    caption: "Kubernetes Core Engine & Microservices",
+    role: "Google Cloud • Sunnyvale",
+    accentColor: "#FFA800",
   },
   {
     id: "r2-4",

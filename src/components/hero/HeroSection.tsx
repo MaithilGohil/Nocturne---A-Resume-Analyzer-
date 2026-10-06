@@ -35,18 +35,16 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden grid-overlay"
     >
-      {/* Background radial */}
-      <div className="absolute inset-0 bg-gradient-radial from-[#111214] via-[#050505] to-[#050505] opacity-80" />
+      {/* Background — pure black + minimal subtle perspective grid */}
+      <div className="absolute inset-0 bg-[#050505]" />
+      <div
+        className="absolute inset-0 bg-[url('/hero-grid-bg.png')] bg-center bg-cover opacity-[0.16] pointer-events-none mix-blend-screen"
+        style={{
+          maskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 25%, transparent 85%)",
+          WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 25%, transparent 85%)",
+        }}
+      />
 
-      {/* Glow orbs */}
-      <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-6 blur-[120px]"
-        style={{ background: "radial-gradient(circle, #F4F5F7, transparent)" }}
-      />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-4 blur-[100px]"
-        style={{ background: "radial-gradient(circle, #888888, transparent)" }}
-      />
 
       {/* 3D Object */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
