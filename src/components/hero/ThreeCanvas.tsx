@@ -3,22 +3,12 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-// VIBGYOR colors
-const VIBGYOR = [
-  new THREE.Color(0x8B00FF), // Violet
-  new THREE.Color(0x4B0082), // Indigo
-  new THREE.Color(0x0000FF), // Blue
-  new THREE.Color(0x00C800), // Green
-  new THREE.Color(0xFFFF00), // Yellow
-  new THREE.Color(0xFF7F00), // Orange
-  new THREE.Color(0xFF0000), // Red
-];
-
-function lerpVibgyor(t: number): THREE.Color {
-  const scaled = t * (VIBGYOR.length - 1);
-  const lo = Math.floor(scaled);
-  const hi = Math.min(lo + 1, VIBGYOR.length - 1);
-  return VIBGYOR[lo].clone().lerp(VIBGYOR[hi], scaled - lo);
+// Assign color using hue cycling — multiple cycles across tubular + radial
+// creates a fully blended/mixed rainbow look with no hard partitions
+function rainbowColor(tubularIndex: number, tubularTotal: number, radialIndex: number, radialTotal: number): THREE.Color {
+  // Cycle hue 4 times across the tube path, plus slight offset per radial ring
+  const hue = ((tubularIndex / tubularTotal) * 4 + (radialIndex / radialTotal) * 0.6) % 1;
+  return new THREE.Color().setHSL(hue, 1.0, 0.55);
 }
 
 function buildRainbowGeometry(
@@ -30,9 +20,8 @@ function buildRainbowGeometry(
   const geo = new THREE.TorusKnotGeometry(radius, tube, tubularSegments, radialSegments);
   const colorArray: number[] = [];
   for (let i = 0; i <= tubularSegments; i++) {
-    const t = i / tubularSegments;
-    const c = lerpVibgyor(t);
     for (let j = 0; j <= radialSegments; j++) {
+      const c = rainbowColor(i, tubularSegments, j, radialSegments);
       colorArray.push(c.r, c.g, c.b);
     }
   }
@@ -60,29 +49,29 @@ export default function ThreeCanvas() {
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    // VIBGYOR outer wireframe torus knot
-    const geometry = buildRainbowGeometry(1, 0.32, 180, 16);
+    // Outer torus knot — fully mixed rainbow wireframe
+    const geometry = buildRainbowGeometry(1, 0.32, 200, 20);
     const material = new THREE.MeshBasicMaterial({
       vertexColors: true,
       wireframe: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9,
     });
     const torusKnot = new THREE.Mesh(geometry, material);
     scene.add(torusKnot);
 
-    // VIBGYOR inner torus knot (smaller, semi-transparent)
-    const innerGeo = buildRainbowGeometry(0.78, 0.22, 120, 10);
+    // Inner torus knot — offset cycle for layered blending
+    const innerGeo = buildRainbowGeometry(0.78, 0.22, 130, 12);
     const innerMat = new THREE.MeshBasicMaterial({
       vertexColors: true,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.4,
     });
     const inner = new THREE.Mesh(innerGeo, innerMat);
     scene.add(inner);
 
-    // Rainbow particle field
+    // Rainbow particles
     const particleGeo = new THREE.BufferGeometry();
     const count = 800;
     const pos = new Float32Array(count * 3);
@@ -91,7 +80,7 @@ export default function ThreeCanvas() {
       pos[i * 3]     = (Math.random() - 0.5) * 12;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 12;
-      const c = lerpVibgyor(Math.random());
+      const c = new THREE.Color().setHSL(Math.random(), 1.0, 0.55);
       pCol[i * 3]     = c.r;
       pCol[i * 3 + 1] = c.g;
       pCol[i * 3 + 2] = c.b;
@@ -102,7 +91,7 @@ export default function ThreeCanvas() {
       vertexColors: true,
       size: 0.018,
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.35,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
@@ -116,7 +105,7 @@ export default function ThreeCanvas() {
     };
     window.addEventListener("mousemove", onMouseMove);
 
-    // Animation loop
+    // Animation
     let rafId: number;
     const clock = new THREE.Clock();
     const animate = () => {

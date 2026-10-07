@@ -3,9 +3,11 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
+import AuthModal from "./AuthModal";
 
 const navLinks = [
+  { label: "Showcase", href: "#showcase" },
   { label: "Platform", href: "#platform" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Intelligence", href: "#intelligence" },
@@ -16,6 +18,7 @@ export default function FloatingNav() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const { scrollY } = useScroll();
   const lastY = useRef(0);
 
@@ -39,43 +42,60 @@ export default function FloatingNav() {
       >
         {/* Brand */}
         <Link href="/" className="group" onClick={() => setMenuOpen(false)}>
-          <span className="font-display font-bold text-base tracking-wide text-white group-hover:text-[#F4F5F7] transition-colors duration-200">
+          <span className="font-display font-bold text-base tracking-wide text-white group-hover:text-[#FF6B00] transition-colors duration-200">
             Nocturne
           </span>
         </Link>
 
-        {/* Desktop links + CTA */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop links + CTA + Sign In */}
+        <div className="hidden md:flex items-center gap-6">
           <div className="flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm text-[#999] hover:text-white transition-colors duration-200 tracking-wide"
+                className="text-xs sm:text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide font-medium"
               >
                 {link.label}
               </Link>
             ))}
           </div>
-          <Link
-            href="/analyze"
-            className="text-sm font-semibold px-4 py-2 rounded-full bg-[#F4F5F7] text-[#050505] hover:bg-white transition-all duration-200 hover:shadow-[0_0_20px_rgba(244,245,247,0.15)]"
-          >
-            Analyze Resume
-          </Link>
+
+          <div className="flex items-center gap-3 pl-3 border-l border-white/10">
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="text-xs font-semibold px-4 py-2 rounded-full border border-white/10 text-white/80 hover:text-white hover:border-[#FF6B00]/50 hover:bg-white/[0.04] transition-all duration-200 flex items-center gap-1.5"
+            >
+              <LogIn className="w-3.5 h-3.5 text-[#FF6B00]" />
+              Sign in
+            </button>
+
+            <Link
+              href="/analyze"
+              className="text-xs font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black hover:brightness-110 transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,107,0,0.3)]"
+            >
+              Analyze Resume
+            </Link>
+          </div>
         </div>
 
-        {/* Mobile: CTA + hamburger */}
-        <div className="flex md:hidden items-center gap-3">
+        {/* Mobile: CTA + Sign In + hamburger */}
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={() => setAuthOpen(true)}
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-white/10 text-white/80 hover:text-white"
+          >
+            Sign in
+          </button>
           <Link
             href="/analyze"
-            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#F4F5F7] text-[#050505]"
+            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black"
           >
             Analyze
           </Link>
           <button
             onClick={() => setMenuOpen((o) => !o)}
-            className="w-8 h-8 flex items-center justify-center text-[#999] hover:text-white transition-colors"
+            className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors ml-1"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -91,21 +111,34 @@ export default function FloatingNav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[60px] left-0 right-0 z-40 glass border-b border-white/5 px-5 py-6 flex flex-col gap-5 md:hidden"
+            className="fixed top-[60px] left-0 right-0 z-40 glass border-b border-white/5 px-5 py-6 flex flex-col gap-4 md:hidden"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm text-[#888] hover:text-white transition-colors tracking-wide"
+                className="text-sm text-white/60 hover:text-white transition-colors tracking-wide"
               >
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setAuthOpen(true);
+              }}
+              className="text-left text-sm text-[#FF6B00] font-semibold py-1 flex items-center gap-2"
+            >
+              <LogIn className="w-4 h-4" />
+              Sign in with Email, GitHub, LinkedIn
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </>
   );
 }

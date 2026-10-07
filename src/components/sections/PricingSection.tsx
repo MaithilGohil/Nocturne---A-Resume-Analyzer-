@@ -21,7 +21,7 @@ const PLANS = [
   },
   {
     name: "Elite",
-    mo: 49, yr: 39,
+    mo: 39, yr: 31,
     desc: "For peak performers",
     features: ["Everything in Pro", "Company intelligence", "Interview generator", "Salary guide", "1-on-1 AI strategy", "White-glove onboarding"],
     cta: "Contact Sales", featured: false,
@@ -81,7 +81,7 @@ function TiltCard({ plan, yearly, index, reduced }: {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl font-black text-white"
             >
-              {price === 0 ? "Free" : `$${price}`}
+              {price === 0 ? "Free" : `₹${price}`}
             </motion.span>
             {price > 0 && (
               <span className="text-white/25 text-sm mb-1.5 font-mono">

@@ -35,13 +35,18 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden grid-overlay"
     >
-      {/* Background — pure black + minimal subtle perspective grid */}
+      {/* Background — pure black + minimal subtle orthogonal engineering grid */}
       <div className="absolute inset-0 bg-[#050505]" />
       <div
-        className="absolute inset-0 bg-[url('/hero-grid-bg.png')] bg-center bg-cover opacity-[0.16] pointer-events-none mix-blend-screen"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          maskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 25%, transparent 85%)",
-          WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 25%, transparent 85%)",
+          backgroundImage: `
+            linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 20%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 50%, black 20%, transparent 80%)",
         }}
       />
 
