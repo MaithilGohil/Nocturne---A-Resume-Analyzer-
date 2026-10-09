@@ -78,19 +78,19 @@ function SkillBar({ skill, score, color, delay, trigger, reduced }: {
 }
 
 const SCORES = [
-  { label: "ATS Score",          score: 91, color: "#FF6B00" },
-  { label: "Job Fit",             score: 84, color: "#00D2FF" },
-  { label: "Achievement Density", score: 77, color: "#F97316" },
-  { label: "Final Score",         score: 87, color: "#3B82F6" },
+  { label: "ATS Score",          score: 91, color: "#0C969C" },
+  { label: "Job Fit",             score: 84, color: "#6BA3BE" },
+  { label: "Achievement Density", score: 77, color: "#0A7075" },
+  { label: "Final Score",         score: 87, color: "#0C969C" },
 ];
 
 const SKILLS = [
-  { skill: "Technical Skills",    score: 88, color: "#FF6B00" },
-  { skill: "Communication",       score: 74, color: "#00D2FF" },
-  { skill: "Leadership",          score: 61, color: "#F97316" },
-  { skill: "Industry Knowledge",  score: 82, color: "#3B82F6" },
-  { skill: "Domain Expertise",    score: 79, color: "#FFA800" },
-  { skill: "Education",           score: 95, color: "#38BDF8" },
+  { skill: "Technical Skills",    score: 88, color: "#0C969C" },
+  { skill: "Communication",       score: 74, color: "#6BA3BE" },
+  { skill: "Leadership",          score: 61, color: "#0A7075" },
+  { skill: "Industry Knowledge",  score: 82, color: "#6BA3BE" },
+  { skill: "Domain Expertise",    score: 79, color: "#0C969C" },
+  { skill: "Education",           score: 95, color: "#6BA3BE" },
 ];
 
 export default function IntelligenceSection() {
@@ -99,13 +99,13 @@ export default function IntelligenceSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <section id="intelligence" className="relative py-28 px-4 sm:px-6 bg-[#0a0a0a] overflow-hidden">
+    <section id="intelligence-scores" className="relative py-28 px-4 sm:px-6 bg-[#000000] overflow-hidden border-t border-white/10">
 
       {/* 3D mockup as ambient background */}
-      <div className="absolute inset-0 opacity-[0.07] pointer-events-none select-none">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none select-none">
         <Image src="/resume-3d-mockup.png" alt="" fill className="object-cover object-center" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-transparent to-[#000000]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-transparent to-[#000000]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto" ref={ref}>
@@ -116,15 +116,15 @@ export default function IntelligenceSection() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="mb-16 text-center"
         >
-          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Intelligence</span>
+          <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">Intelligence</span>
           <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
             Precision{" "}
-            <span className="bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0C969C] via-[#6BA3BE] to-[#0A7075] bg-clip-text text-transparent">
               scoring
             </span>
             ,<br />not estimates
           </h2>
-          <p className="mt-4 text-white/40 text-sm max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 text-[#98b2ba] text-sm max-w-md mx-auto leading-relaxed">
             Every dimension of your resume is quantified. No guesswork. No generic advice.
           </p>
         </motion.div>

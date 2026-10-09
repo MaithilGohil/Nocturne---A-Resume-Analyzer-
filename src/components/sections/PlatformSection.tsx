@@ -156,16 +156,16 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
       className={`group relative rounded-2xl p-px transition-all duration-500 ${className}`}
       style={{
         background: hovered
-          ? `radial-gradient(380px circle at ${pos.x}px ${pos.y}px, rgba(255,107,0,0.32), rgba(59,130,246,0.2) 40%, #2a2a2a 70%)`
-          : "#1e1e1e",
+          ? `radial-gradient(380px circle at ${pos.x}px ${pos.y}px, rgba(12,150,156,0.4), rgba(107,163,190,0.2) 40%, #1e1e1e 70%)`
+          : "#141414",
       }}
       onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos({ x: e.clientX - r.left, y: e.clientY - r.top }); }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="relative h-full rounded-[calc(1rem-1px)] bg-[#141414] overflow-hidden"
-        style={hovered ? { background: `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(255,107,0,0.04), #141414 55%)` } : {}}
+        className="relative h-full rounded-[calc(1rem-1px)] bg-[#0d0d0d] overflow-hidden"
+        style={hovered ? { background: `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(12,150,156,0.06), #0d0d0d 55%)` } : {}}
       >
         {children}
       </div>
@@ -176,11 +176,11 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 /* ── Section ──────────────────────────────────────────────────── */
 
 const CARDS = [
-  { icon: FileSearch, title: "Resume Scanner", desc: "Scans every line for ATS signals, keyword density, and formatting red flags.", anim: "scan", span: "lg:col-span-2", color: "text-[#FF6B00] bg-orange-500/10 border-orange-500/20" },
-  { icon: Activity,   title: "7-Axis Radar",    desc: "Scores across seven competency dimensions simultaneously.", anim: "radar", span: "", color: "text-[#00D2FF] bg-blue-500/10 border-blue-500/20" },
-  { icon: GitBranch,  title: "Career Roadmap",  desc: "Auto-generates a prioritised skill development path.", anim: "roadmap", span: "", color: "text-[#F97316] bg-orange-500/10 border-orange-500/20" },
-  { icon: BarChart3,  title: "Market Trends",   desc: "Real-time job market demand mapped to your skill profile.", anim: "bars", span: "", color: "text-[#3B82F6] bg-blue-500/10 border-blue-500/20" },
-  { icon: MessageCircle, title: "AI Coach",     desc: "Conversational guidance through every career decision.", anim: "chat", span: "", color: "text-[#FFA800] bg-amber-500/10 border-amber-500/20" },
+  { icon: FileSearch, title: "Resume Scanner", desc: "Scans every line for ATS signals, keyword density, and formatting red flags.", anim: "scan", span: "lg:col-span-2", color: "text-[#0C969C] bg-[#0C969C]/10 border-[#0C969C]/20" },
+  { icon: Activity,   title: "7-Axis Radar",    desc: "Scores across seven competency dimensions simultaneously.", anim: "radar", span: "", color: "text-[#6BA3BE] bg-[#6BA3BE]/10 border-[#6BA3BE]/20" },
+  { icon: GitBranch,  title: "Career Roadmap",  desc: "Auto-generates a prioritised skill development path.", anim: "roadmap", span: "", color: "text-[#0C969C] bg-[#0C969C]/10 border-[#0C969C]/20" },
+  { icon: BarChart3,  title: "Market Trends",   desc: "Real-time job market demand mapped to your skill profile.", anim: "bars", span: "", color: "text-[#6BA3BE] bg-[#6BA3BE]/10 border-[#6BA3BE]/20" },
+  { icon: MessageCircle, title: "AI Coach",     desc: "Conversational guidance through every career decision.", anim: "chat", span: "", color: "text-[#0A7075] bg-[#0A7075]/10 border-[#0A7075]/20" },
 ];
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
@@ -205,7 +205,7 @@ export default function PlatformSection() {
   };
 
   return (
-    <section id="platform" className="py-28 px-4 sm:px-6 bg-[#0a0a0a]">
+    <section id="platform" className="py-28 px-4 sm:px-6 bg-[#000000] border-t border-white/10">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -214,14 +214,14 @@ export default function PlatformSection() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Platform</span>
+          <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">Platform</span>
           <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
             Everything you need to{" "}
-            <span className="bg-gradient-to-r from-[#FF6B00] to-[#3B82F6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0C969C] via-[#6BA3BE] to-[#0A7075] bg-clip-text text-transparent">
               outperform
             </span>
           </h2>
-          <p className="mt-4 text-white/40 max-w-lg text-sm leading-relaxed">
+          <p className="mt-4 text-[#98b2ba] max-w-lg text-sm leading-relaxed">
             Five intelligent tools. One unified platform. Built to turn your resume into a precision instrument.
           </p>
         </motion.div>

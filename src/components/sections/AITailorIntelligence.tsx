@@ -70,10 +70,10 @@ export default function AITailorIntelligence() {
   const currentExample = BULLET_EXAMPLES[selectedExample];
 
   return (
-    <section id="intelligence" className="relative py-28 px-4 sm:px-6 bg-[#0a0a0a] overflow-hidden border-t border-b border-[#2a2a2a]/40">
+    <section id="intelligence" className="relative py-28 px-4 sm:px-6 bg-[#000000] overflow-hidden border-t border-b border-white/10">
       {/* Background ambient dual glows */}
-      <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-orange-500/5 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-blue-500/5 blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#0C969C]/5 blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-[#6BA3BE]/5 blur-[160px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
@@ -85,20 +85,20 @@ export default function AITailorIntelligence() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
-            <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0a0a0a] border border-[#0A7075]/40 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0C969C] animate-pulse" />
+            <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">
               RESUME INTELLIGENCE
             </span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white">
             See what recruiters see.{" "}
             <br />
-            <span className="bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0C969C] via-[#6BA3BE] to-[#0A7075] bg-clip-text text-transparent">
               Rewrite with real impact.
             </span>
           </h2>
-          <p className="mt-4 text-white/40 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[#98b2ba] text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Applicant Tracking Systems filter out 75% of resumes before human eyes touch them. Nocturne parses, quantifies, and tailors every bullet in seconds.
           </p>
         </motion.div>
@@ -107,11 +107,11 @@ export default function AITailorIntelligence() {
         <div className="grid lg:grid-cols-12 gap-6 mb-16 items-stretch">
           
           {/* Left Panel: Role Switcher & ATS Signals */}
-          <div className="lg:col-span-4 rounded-2xl border border-[#2a2a2a] bg-[#141414] p-6 flex flex-col justify-between glass-card-3d">
+          <div className="lg:col-span-4 rounded-2xl border border-white/10 bg-[#0d0d0d] p-6 flex flex-col justify-between glass-card-3d">
             <div>
               <div className="flex items-center justify-between mb-5">
                 <span className="text-xs font-mono tracking-wider text-white/50 uppercase font-semibold">Select Role Profile</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-500/10 text-[#FF6B00] border border-orange-500/20">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#0C969C]/10 text-[#0C969C] border border-[#0C969C]/30">
                   Live ATS Demo
                 </span>
               </div>
@@ -127,12 +127,12 @@ export default function AITailorIntelligence() {
                     }}
                     className={`w-full text-left px-4 py-3 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-between ${
                       selectedExample === idx
-                        ? "bg-gradient-to-r from-orange-500/15 to-blue-500/10 border border-[#FF6B00]/40 text-white shadow-[0_0_20px_rgba(255,107,0,0.15)]"
+                        ? "bg-gradient-to-r from-[#0C969C]/20 to-[#6BA3BE]/10 border border-[#0C969C]/50 text-white shadow-[0_0_20px_rgba(12,150,156,0.2)]"
                         : "bg-white/[0.02] border border-white/5 text-white/50 hover:text-white hover:bg-white/[0.04]"
                     }`}
                   >
                     <span>{ex.role}</span>
-                    {selectedExample === idx && <ArrowRight className="w-3.5 h-3.5 text-[#FF6B00]" />}
+                    {selectedExample === idx && <ArrowRight className="w-3.5 h-3.5 text-[#0C969C]" />}
                   </button>
                 ))}
               </div>

@@ -35,14 +35,14 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden grid-overlay"
     >
-      {/* Background — deep obsidian teal + crisp engineering grid */}
-      <div className="absolute inset-0 bg-[#031716]" />
+      {/* Background — pure black + crisp engineering grid */}
+      <div className="absolute inset-0 bg-[#000000]" />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(107, 163, 190, 0.085) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(107, 163, 190, 0.085) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
           `,
           backgroundSize: "28px 28px",
           maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black 35%, transparent 88%)",

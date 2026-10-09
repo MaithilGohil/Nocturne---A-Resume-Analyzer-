@@ -29,12 +29,12 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
   },
   {
     id: "r1-3",
-    src: "/showcase/showcase-1.png",
-    alt: "J.P. Morgan Quantitative Finance",
-    widthType: "square",
-    tag: "Investment Banking",
-    caption: "Quantitative Portfolio & Risk Architecture",
-    role: "J.P. Morgan • New York",
+    src: "/showcase/resume-poster-red.png",
+    alt: "Creative Graphic & Infographic Resume Design",
+    widthType: "portrait",
+    tag: "Design Strategy",
+    caption: "Infographic Hierarchy & Bold Visual Strategy",
+    role: "Creative Direction • Editorial",
     accentColor: "#6BA3BE",
   },
   {
@@ -62,21 +62,21 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
 export const ROW_2_ITEMS: ShowcaseItem[] = [
   {
     id: "r2-1",
-    src: "/showcase/oculus.png",
-    alt: "Oculus Neural Cybernetics & VR Systems",
+    src: "/showcase/oculus-red.png",
+    alt: "Cybernetic AI & Sensory Android Robotics",
     widthType: "portrait",
-    tag: "Spatial XR",
-    caption: "Neural XR Interface & Sensory Telemetry",
-    role: "Oculus Research • Menlo Park",
+    tag: "Robotics & AI",
+    caption: "Autonomous Bipedal & Neural Android Systems",
+    role: "Optimus Robotics • Palo Alto",
     accentColor: "#0C969C",
   },
   {
     id: "r2-2",
-    src: "/showcase/showcase-3.png",
-    alt: "ISRO Lunar Exploration",
+    src: "/showcase/isro-minimal.png",
+    alt: "ISRO Indian Space Research Organisation",
     widthType: "portrait",
     tag: "Aerospace Systems",
-    caption: "Deep Space Propulsion & Telemetry",
+    caption: "Indian Space Research Mission Architecture",
     role: "ISRO • Mission Operations",
     accentColor: "#6BA3BE",
   },
@@ -138,7 +138,7 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
 
   return (
     <div
-      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl glass-card-3d bg-[#032F30]/40 overflow-hidden select-none cursor-pointer border border-[#0A7075]/25`}
+      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl glass-card-3d bg-[#0d0d0d] overflow-hidden select-none cursor-pointer border border-[#0A7075]/30`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setTilt((t) => ({ ...t, hovered: true }))}
       onMouseLeave={handleMouseLeave}
@@ -152,7 +152,7 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
       <div className="sheen-layer" />
 
       {/* Media Container */}
-      <div className="relative w-full h-full bg-[#031716] overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full bg-[#000000] overflow-hidden flex items-center justify-center">
         <Image
           src={item.src}
           alt={item.alt}
@@ -164,13 +164,13 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
         />
 
         {/* Subtle Dark Gradient Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#031716]/95 via-[#031716]/45 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/95 via-[#000000]/40 to-transparent pointer-events-none" />
       </div>
 
       {/* Top Tag with Dynamic Accent */}
       {item.tag && (
         <div className="absolute top-3.5 left-3.5 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-[#031716]/85 backdrop-blur-md border border-[#0A7075]/40 text-[#6BA3BE] group-hover:border-[#0C969C] group-hover:text-[#0C969C] transition-colors duration-300">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-[#000000]/85 backdrop-blur-md border border-[#0A7075]/40 text-[#6BA3BE] group-hover:border-[#0C969C] group-hover:text-[#0C969C] transition-colors duration-300">
             {item.tag}
           </span>
         </div>
@@ -222,7 +222,7 @@ export default function ShowcaseMarquee() {
     <section
       ref={sectionRef}
       id="showcase"
-      className="relative py-24 sm:py-32 bg-[#031716] overflow-hidden border-t border-b border-[#0A7075]/25"
+      className="relative py-24 sm:py-32 bg-[#000000] overflow-hidden border-t border-b border-white/10"
     >
       {/* Dual ambient glow: Electric Cyan left, Ocean Teal right */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-[#0C969C]/10 blur-[150px] pointer-events-none" />
@@ -236,7 +236,7 @@ export default function ShowcaseMarquee() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-14 sm:mb-18"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#032F30]/60 border border-[#0A7075]/40 mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0a0a0a] border border-[#0A7075]/40 mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-[#0C969C] animate-pulse" />
           <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">
             SHOWCASE
