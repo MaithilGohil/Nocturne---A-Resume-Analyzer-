@@ -42,7 +42,7 @@ export default function FloatingNav() {
       >
         {/* Brand */}
         <Link href="/" className="group" onClick={() => setMenuOpen(false)}>
-          <span className="font-display font-bold text-base tracking-wide text-white group-hover:text-[#FF6B00] transition-colors duration-200">
+          <span className="font-display font-bold text-base tracking-wide text-white group-hover:text-[#0C969C] transition-colors duration-200">
             Nocturne
           </span>
         </Link>
@@ -54,25 +54,25 @@ export default function FloatingNav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-xs sm:text-sm text-white/50 hover:text-white transition-colors duration-200 tracking-wide font-medium"
+                className="text-xs sm:text-sm text-white/60 hover:text-[#6BA3BE] transition-colors duration-200 tracking-wide font-medium"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          <div className="flex items-center gap-3 pl-3 border-l border-white/10">
+          <div className="flex items-center gap-3 pl-3 border-l border-[#0A7075]/30">
             <button
               onClick={() => setAuthOpen(true)}
-              className="text-xs font-semibold px-4 py-2 rounded-full border border-white/10 text-white/80 hover:text-white hover:border-[#FF6B00]/50 hover:bg-white/[0.04] transition-all duration-200 flex items-center gap-1.5"
+              className="text-xs font-semibold px-4 py-2 rounded-full border border-[#0A7075]/40 text-white/90 hover:text-white hover:border-[#0C969C] hover:bg-[#0C969C]/10 transition-all duration-200 flex items-center gap-1.5"
             >
-              <LogIn className="w-3.5 h-3.5 text-[#FF6B00]" />
+              <LogIn className="w-3.5 h-3.5 text-[#0C969C]" />
               Sign in
             </button>
 
             <Link
               href="/analyze"
-              className="text-xs font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black hover:brightness-110 transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,107,0,0.3)]"
+              className="text-xs font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-[#0C969C] to-[#6BA3BE] text-black hover:brightness-110 transition-all duration-200 hover:shadow-[0_0_20px_rgba(12,150,156,0.4)]"
             >
               Analyze Resume
             </Link>
@@ -83,13 +83,13 @@ export default function FloatingNav() {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={() => setAuthOpen(true)}
-            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-white/10 text-white/80 hover:text-white"
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-[#0A7075]/40 text-white/80 hover:text-white"
           >
             Sign in
           </button>
           <Link
             href="/analyze"
-            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black"
+            className="text-xs font-semibold px-3 py-1.5 rounded-full bg-gradient-to-r from-[#0C969C] to-[#6BA3BE] text-black"
           >
             Analyze
           </Link>
@@ -111,14 +111,14 @@ export default function FloatingNav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[60px] left-0 right-0 z-40 glass border-b border-white/5 px-5 py-6 flex flex-col gap-4 md:hidden"
+            className="fixed top-[60px] left-0 right-0 z-40 bg-[#031716]/95 backdrop-blur-xl border-b border-[#0A7075]/30 px-5 py-6 flex flex-col gap-4 md:hidden"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm text-white/60 hover:text-white transition-colors tracking-wide"
+                className="text-sm text-white/70 hover:text-[#0C969C] transition-colors tracking-wide"
               >
                 {link.label}
               </Link>
@@ -128,7 +128,7 @@ export default function FloatingNav() {
                 setMenuOpen(false);
                 setAuthOpen(true);
               }}
-              className="text-left text-sm text-[#FF6B00] font-semibold py-1 flex items-center gap-2"
+              className="text-left text-sm text-[#0C969C] font-semibold py-1 flex items-center gap-2"
             >
               <LogIn className="w-4 h-4" />
               Sign in with Email, GitHub, LinkedIn

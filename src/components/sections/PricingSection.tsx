@@ -59,19 +59,19 @@ function TiltCard({ plan, yearly, index, reduced }: {
       }}
       className={`relative rounded-2xl p-px ${
         plan.featured
-          ? "bg-gradient-to-b from-orange-500/60 via-orange-500/20 to-blue-500/20 shadow-[0_0_35px_rgba(255,107,0,0.15)]"
-          : "bg-[#2a2a2a]"
+          ? "bg-gradient-to-b from-[#0C969C] via-[#6BA3BE]/30 to-[#0A7075]/20 shadow-[0_0_35px_rgba(12,150,156,0.2)]"
+          : "bg-[#0A7075]/30"
       }`}
     >
       {plan.featured && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-          <span className="text-[10px] font-bold tracking-widest uppercase bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black px-3.5 py-1 rounded-full shadow-[0_0_15px_rgba(255,107,0,0.4)]">
+          <span className="text-[10px] font-bold tracking-widest uppercase bg-gradient-to-r from-[#0C969C] to-[#6BA3BE] text-black px-3.5 py-1 rounded-full shadow-[0_0_15px_rgba(12,150,156,0.4)]">
             Most Popular
           </span>
         </div>
       )}
 
-      <div className={`h-full rounded-[calc(1rem-1px)] p-7 flex flex-col ${plan.featured ? "bg-[#18110b]" : "bg-[#141414]"}`}>
+      <div className={`h-full rounded-[calc(1rem-1px)] p-7 flex flex-col ${plan.featured ? "bg-[#032F30]/95" : "bg-[#031716]/95"}`}>
         <div className="mb-7">
           <h3 className="text-xs font-semibold text-white/50 tracking-widest uppercase mb-3 font-mono">{plan.name}</h3>
           <div className="flex items-end gap-1 mb-1">
@@ -84,18 +84,18 @@ function TiltCard({ plan, yearly, index, reduced }: {
               {price === 0 ? "Free" : `₹${price}`}
             </motion.span>
             {price > 0 && (
-              <span className="text-white/25 text-sm mb-1.5 font-mono">
+              <span className="text-white/35 text-sm mb-1.5 font-mono">
                 /{yearly ? "mo, billed yearly" : "month"}
               </span>
             )}
           </div>
-          <p className="text-xs text-white/30">{plan.desc}</p>
+          <p className="text-xs text-[#98b2ba]">{plan.desc}</p>
         </div>
 
         <ul className="space-y-3 flex-1 mb-8">
           {plan.features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5 text-sm text-white/45">
-              <Check className={`w-4 h-4 flex-shrink-0 mt-px ${plan.featured ? "text-[#FF6B00]" : "text-[#3B82F6]"}`} />
+            <li key={f} className="flex items-start gap-2.5 text-sm text-white/60">
+              <Check className={`w-4 h-4 flex-shrink-0 mt-px ${plan.featured ? "text-[#0C969C]" : "text-[#6BA3BE]"}`} />
               {f}
             </li>
           ))}
@@ -104,8 +104,8 @@ function TiltCard({ plan, yearly, index, reduced }: {
         <button
           className={`w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
             plan.featured
-              ? "bg-gradient-to-r from-[#FF6B00] to-[#FFA800] text-black hover:shadow-[0_0_30px_rgba(255,107,0,0.4)] hover:brightness-110"
-              : "border border-[#2a2a2a] text-white hover:border-[#3B82F6]/50 hover:text-[#00D2FF]"
+              ? "bg-gradient-to-r from-[#0C969C] to-[#6BA3BE] text-black hover:shadow-[0_0_30px_rgba(12,150,156,0.5)] hover:brightness-110"
+              : "border border-[#0A7075]/50 text-white hover:border-[#0C969C] hover:text-[#0C969C] hover:bg-[#0C969C]/10"
           }`}
         >
           {plan.cta}
@@ -120,7 +120,7 @@ export default function PricingSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <section id="pricing" className="py-28 px-4 sm:px-6 bg-[#050505]">
+    <section id="pricing" className="py-28 px-4 sm:px-6 bg-[#031716] border-t border-[#0A7075]/25">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
@@ -129,25 +129,25 @@ export default function PricingSection() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">Pricing</span>
+          <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">Pricing</span>
           <h2 className="mt-3 font-display font-black text-4xl sm:text-5xl tracking-tight text-white">
             Invest in your{" "}
-            <span className="bg-gradient-to-r from-[#FF6B00] to-[#3B82F6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0C969C] via-[#6BA3BE] to-[#0A7075] bg-clip-text text-transparent">
               career
             </span>
           </h2>
-          <p className="mt-4 text-white/40 text-sm max-w-xs mx-auto">Start free. Upgrade when you're ready to win.</p>
+          <p className="mt-4 text-[#98b2ba] text-sm max-w-xs mx-auto">Start free. Upgrade when you're ready to win.</p>
 
           {/* Toggle */}
-          <div className="mt-8 inline-flex items-center gap-1 p-1 rounded-full bg-[#141414] border border-[#2a2a2a]">
+          <div className="mt-8 inline-flex items-center gap-1 p-1 rounded-full bg-[#032F30]/70 border border-[#0A7075]/40">
             <button
               onClick={() => setYearly(false)}
-              className={`relative px-5 py-2 rounded-full text-sm transition-all duration-200 ${!yearly ? "text-black font-semibold" : "text-white/40 hover:text-white"}`}
+              className={`relative px-5 py-2 rounded-full text-sm transition-all duration-200 ${!yearly ? "text-black font-semibold" : "text-white/50 hover:text-white"}`}
             >
               {!yearly && (
                 <motion.span
                   layoutId="pill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800]"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0C969C] to-[#6BA3BE]"
                   style={{ zIndex: -1 }}
                 />
               )}
@@ -155,16 +155,16 @@ export default function PricingSection() {
             </button>
             <button
               onClick={() => setYearly(true)}
-              className={`relative px-5 py-2 rounded-full text-sm transition-all duration-200 ${yearly ? "text-black font-semibold" : "text-white/40 hover:text-white"}`}
+              className={`relative px-5 py-2 rounded-full text-sm transition-all duration-200 ${yearly ? "text-black font-semibold" : "text-white/50 hover:text-white"}`}
             >
               {yearly && (
                 <motion.span
                   layoutId="pill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FFA800]"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0C969C] to-[#6BA3BE]"
                   style={{ zIndex: -1 }}
                 />
               )}
-              Yearly <span className={`ml-1 text-[10px] font-bold ${yearly ? "text-black" : "text-[#FF6B00]"}`}>−20%</span>
+              Yearly <span className={`ml-1 text-[10px] font-bold ${yearly ? "text-black" : "text-[#0C969C]"}`}>−20%</span>
             </button>
           </div>
         </motion.div>

@@ -25,17 +25,7 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
     tag: "Automotive Dynamics",
     caption: "GT3 RS Aerodynamics & Trackside Telemetry",
     role: "Porsche Motorsport • Weissach",
-    accentColor: "#22c55e",
-  },
-  {
-    id: "r1-2",
-    src: "/showcase/meta.png",
-    alt: "Meta AI Neural Network Research",
-    widthType: "portrait",
-    tag: "Generative AI",
-    caption: "Llama 3 Infrastructure & Synthetic Neural Fields",
-    role: "Meta Reality Labs • Menlo Park",
-    accentColor: "#00D2FF",
+    accentColor: "#0C969C",
   },
   {
     id: "r1-3",
@@ -45,7 +35,7 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
     tag: "Investment Banking",
     caption: "Quantitative Portfolio & Risk Architecture",
     role: "J.P. Morgan • New York",
-    accentColor: "#3B82F6",
+    accentColor: "#6BA3BE",
   },
   {
     id: "r1-4",
@@ -55,7 +45,7 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
     tag: "Spatial Computing",
     caption: "Neural XR Headset & Haptics",
     role: "DeepMind XR • London",
-    accentColor: "#F97316",
+    accentColor: "#0C969C",
   },
   {
     id: "r1-5",
@@ -65,7 +55,7 @@ export const ROW_1_ITEMS: ShowcaseItem[] = [
     tag: "Formula 1 Racing",
     caption: "F1 Hybrid Powertrain & Telemetry Architecture",
     role: "Scuderia Ferrari • Maranello",
-    accentColor: "#FF6B00",
+    accentColor: "#6BA3BE",
   },
 ];
 
@@ -78,7 +68,7 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
     tag: "Spatial XR",
     caption: "Neural XR Interface & Sensory Telemetry",
     role: "Oculus Research • Menlo Park",
-    accentColor: "#FF6B00",
+    accentColor: "#0C969C",
   },
   {
     id: "r2-2",
@@ -88,7 +78,7 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
     tag: "Aerospace Systems",
     caption: "Deep Space Propulsion & Telemetry",
     role: "ISRO • Mission Operations",
-    accentColor: "#3B82F6",
+    accentColor: "#6BA3BE",
   },
   {
     id: "r2-3",
@@ -98,7 +88,7 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
     tag: "Quantum Computing",
     caption: "Qiskit Quantum Hardware & Superconducting Qubits",
     role: "IBM Research • Yorktown Heights",
-    accentColor: "#3B82F6",
+    accentColor: "#0C969C",
   },
   {
     id: "r2-4",
@@ -108,17 +98,7 @@ export const ROW_2_ITEMS: ShowcaseItem[] = [
     tag: "Human Interface",
     caption: "Synthetic Neuro-Visual Systems",
     role: "Neuralink • Fremont",
-    accentColor: "#F97316",
-  },
-  {
-    id: "r2-5",
-    src: "/showcase/showcase-6.png",
-    alt: "Autonomous Deep Exploration Submersibles",
-    widthType: "wide",
-    tag: "Deep Exploration",
-    caption: "Autonomous Sub-surface Navigation & Robotics",
-    role: "Woods Hole • Massachusetts",
-    accentColor: "#00D2FF",
+    accentColor: "#0A7075",
   },
 ];
 
@@ -158,7 +138,7 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
 
   return (
     <div
-      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl glass-card-3d bg-[#141414] overflow-hidden select-none cursor-pointer`}
+      className={`group marquee-card relative shrink-0 ${widthClasses} h-[220px] sm:h-[320px] rounded-2xl glass-card-3d bg-[#032F30]/40 overflow-hidden select-none cursor-pointer border border-[#0A7075]/25`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setTilt((t) => ({ ...t, hovered: true }))}
       onMouseLeave={handleMouseLeave}
@@ -172,7 +152,7 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
       <div className="sheen-layer" />
 
       {/* Media Container */}
-      <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full bg-[#031716] overflow-hidden flex items-center justify-center">
         <Image
           src={item.src}
           alt={item.alt}
@@ -184,13 +164,13 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
         />
 
         {/* Subtle Dark Gradient Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#031716]/95 via-[#031716]/45 to-transparent pointer-events-none" />
       </div>
 
       {/* Top Tag with Dynamic Accent */}
       {item.tag && (
         <div className="absolute top-3.5 left-3.5 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-black/70 backdrop-blur-md border border-white/12 text-white/90 group-hover:border-[#FF6B00]/50 group-hover:text-[#FF6B00] transition-colors duration-300">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-[#031716]/85 backdrop-blur-md border border-[#0A7075]/40 text-[#6BA3BE] group-hover:border-[#0C969C] group-hover:text-[#0C969C] transition-colors duration-300">
             {item.tag}
           </span>
         </div>
@@ -201,7 +181,7 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
         {item.role && (
           <span
             className="text-[11px] font-mono font-medium tracking-wide mb-1"
-            style={{ color: item.accentColor || "#FF6B00" }}
+            style={{ color: item.accentColor || "#0C969C" }}
           >
             {item.role}
           </span>
@@ -242,11 +222,11 @@ export default function ShowcaseMarquee() {
     <section
       ref={sectionRef}
       id="showcase"
-      className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden border-t border-b border-[#2a2a2a]/40"
+      className="relative py-24 sm:py-32 bg-[#031716] overflow-hidden border-t border-b border-[#0A7075]/25"
     >
-      {/* Dual ambient glow: Blue left, Orange right */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-blue-500/8 blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-orange-500/8 blur-[150px] pointer-events-none" />
+      {/* Dual ambient glow: Electric Cyan left, Ocean Teal right */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-[#0C969C]/10 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-[#0A7075]/15 blur-[150px] pointer-events-none" />
 
       {/* Header */}
       <motion.div
@@ -256,16 +236,19 @@ export default function ShowcaseMarquee() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-14 sm:mb-18"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
-          <span className="text-xs tracking-[0.3em] text-[#FF6B00] uppercase font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#032F30]/60 border border-[#0A7075]/40 mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#0C969C] animate-pulse" />
+          <span className="text-xs tracking-[0.3em] text-[#0C969C] uppercase font-mono font-medium">
             SHOWCASE
           </span>
         </div>
         <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white">
-          Built for people who <span className="bg-gradient-to-r from-[#FF6B00] via-[#FFA800] to-[#3B82F6] bg-clip-text text-transparent">get hired</span>
+          This Dreams Need to be{" "}
+          <span className="bg-gradient-to-r from-[#0C969C] via-[#6BA3BE] to-[#0A7075] bg-clip-text text-transparent">
+            Achieved
+          </span>
         </h2>
-        <p className="mt-4 text-white/40 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-4 text-[#98b2ba] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
           From Wall Street quant desks to aerospace engineering labs — candidate portfolios optimized by Nocturne.
         </p>
       </motion.div>
